@@ -1,12 +1,26 @@
-const AppManage = () => import('./AppManage')
+const button = () => import('./button')
+const input = () => import('./input')
+const select = () => import('./select')
 
 
 export default [
   {
-    path: '/AppManage',
-    name: 'AppManage',
-    meta: {title: '应用管理'},
-    component: AppManage
+    path: '/button',
+    name: 'button',
+    meta: {title: 'button'},
+    component: button
+  },
+  {
+    path: '/input',
+    name: 'input',
+    meta: {title: 'input'},
+    component: input
+  },
+  {
+    path: '/select',
+    name: 'select',
+    meta: {title: 'select'},
+    component: select
   },
 ]
 

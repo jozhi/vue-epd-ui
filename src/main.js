@@ -9,7 +9,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/cube.css';
 import './assets/css/page.css';
 import * as api from './api/index'
+
+import epdUI from '@/components'
+
 Vue.use(ElementUI)
+Vue.use(epdUI)
 
 
 Vue.prototype.$api = api    // 数据请求方法

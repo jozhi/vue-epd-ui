@@ -6,9 +6,7 @@
       </span>
       <strong class="h1">应用管理</strong>
     </div>
-    <div class="contPart">
-      <a class="creatApp" href="#"><i class="el-icon-plus"></i> 创建应用</a>
-    </div>
+    <ep-select></ep-select>
   </div>
 </template>
 
