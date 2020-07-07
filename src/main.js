@@ -3,20 +3,27 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 
+// 公共 class 引入
 import './assets/css/cube.css';
 import './assets/css/page.css';
-import * as api from './api/index'
 
-import epdUI from '@/components'
-
+// ElementUI 引入
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+
+// epdUI 引入
+import epdUI from '@/components'
 Vue.use(epdUI)
 
+// 告诉Vue 要使用插件 vue-highlightjs
+import VueHighlightJS from 'vue-highlightjs'
+Vue.use(VueHighlightJS)
 
+import * as api from './api/index'
 Vue.prototype.$api = api    // 数据请求方法
+
 Vue.config.productionTip = false
 
 new Vue({
