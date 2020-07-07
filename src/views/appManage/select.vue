@@ -1,9 +1,6 @@
 <template>
   <div class="AppManage">
     <div class="titlePart cf">
-      <span class="searchBox">
-        <el-input v-model="input" placeholder="请输入内容"></el-input>
-      </span>
       <strong class="h1">应用管理</strong>
     </div>
     <ep-select></ep-select>
@@ -13,10 +10,6 @@
 <style lang="less" scope>
 .AppManage{}
 .titlePart {
-  .searchBox{
-    width: 300px;
-    float: right;
-  }
 }
 .contPart{
   margin-bottom: 10px;

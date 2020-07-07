@@ -12,7 +12,8 @@ import Login from '../basicModule/system/Login'
 import Home from '../basicModule/system/Home'
 import Index from '../basicModule/system/index'
 
-import AppManageRouter from '../views/appManage/AppManage.route'
+// 业务模块
+import serviceModule from './serviceModule.route'
 
 Vue.use(VueRouter)
 const routes = [{
@@ -34,7 +35,7 @@ const routes = [{
         },
         component: Index
       },
-      ...AppManageRouter
+      ...serviceModule
     ]
   }
 ]

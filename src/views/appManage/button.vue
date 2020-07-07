@@ -1,9 +1,8 @@
 <template>
   <div class="AppManage">
     <div class="titlePart cf">
-      <span class="searchBox">
-        <el-input v-model="input" placeholder="请输入内容"></el-input>
-      </span>
+      <strong class="h1">应用管理</strong>
+    </div>
     <div class="pb48 underline">
       <h2>Button组件</h2>
       <p>1.基础样式：type</p>
@@ -28,20 +27,12 @@
       <ep-button type="warning" isDisabled>warning</ep-button>
       <ep-button type="info" isDisabled>info</ep-button>
     </div>
-    </div>
-    <div class="contPart">
-      <a class="creatApp" href="#"><i class="el-icon-plus"></i> 创建应用</a>
-    </div>
   </div>
 </template>
 
 <style lang="less" scope>
 .AppManage{}
 .titlePart {
-  .searchBox{
-    width: 300px;
-    float: right;
-  }
 }
 .contPart{
   margin-bottom: 10px;

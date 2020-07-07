@@ -9,6 +9,8 @@
         <!-- S 一级菜单 -->
         <ul class="ep-menu-body" :style="isSidebar ? 'width: 256px;' : 'width: 80px;'">
           <template v-for="(item, index) in menus">
+
+            <!-- S 收缩后 没有二级子菜单时显示  -->
             <el-tooltip class="item" effect="dark" :content="item.title" placement="right" v-if="!isSidebar && !item.children" :key="index">
               <li class="ep-submenu" @click="handleClick(index, item)" :style="isSidebar && selIndex === index ? 'background: #1891ff;' : ''">
                 <div class="ep-submenu__title">
@@ -18,6 +20,8 @@
                 </div>
               </li>
             </el-tooltip>
+            <!-- E 收缩后 没有二级子菜单时显示  -->
+            
             <li
               class="ep-submenu"
               :key="index"
@@ -51,7 +55,9 @@
             <!-- S 二级菜单 -->
             <template v-if="isSidebar">
               <transition name="slide-fade" :key="index">
-                <ul v-show="isExpand && selIndex === index">
+                <!-- <ul v-show="isExpand && selIndex === index"> -->
+                <!-- 改为默认展开二级菜单 -->
+                <ul>
                   <template v-for="(two, i) in item.children">
                     <li
                       class="ep-submenu"
@@ -359,11 +365,12 @@ export default {
       line-height: 64px;
       transition: all 0.3s;
       text-align: left;
+      overflow: hidden;
       img {
         display: inline-block;
         vertical-align: middle;
         width: 32px;
-        margin-left: 16px;
+        margin-left: 20px;
       }
       h1 {
         color: #fff;
