@@ -4,8 +4,8 @@
       :prop="name"
       :label-width="labelWidth + 'px'"
       :label="label"
-      :title="label != ''?label:placeholder"
-      v-if="ishide === true?false:true"
+      :title="label || placeholder"
+      v-if="!ishide"
     >
       <el-input
         :title="inputvalue"
@@ -31,90 +31,76 @@
 export default {
   name: 'ep-input',
   props: {
+    // 在 Input 值改变时触发 用之判断处理数据
     inputtype: {
       type: String,
       default: 'text'
     },
+    // 默认值
     value: {
       type: [String, Number],
       default: ''
     },
+    // 根据此参数判断是否补全 0.00
     money: {
       type: Boolean,
       default: false
     },
+    // 根据此参数判断是否补全 .00
     fuMoney: {
       type: Boolean,
       default: false
     },
-    wanMoney: {
-      type: Boolean,
-      default: false
-    },
+    // 设置显示隐藏
     ishide: {
       type: Boolean,
       default: false
     },
+    // el-col 宽度数目
     colspan: {
       type: String,
       default: '24'
     },
+    // input 前 lable 的宽度
     labelWidth: {
       type: String,
       default: '140'
     },
+    // input 前 lable 的名字
     label: {
       type: String,
       default: ''
     },
+    // placeholder 占位符
     placeholder: {
       type: String,
       default: '请输入'
     },
+    // 是否禁止编辑
     eleDisabled: {
       type: Boolean,
       default: false
     },
-    p: {
-      type: String,
-      default: ''
-    },
-    type: String,
+    // 最大长度
     maxlength: {
       type: [String, Number]
     },
+    // 原生 name 属性
     name: {
       type: String,
       default: ''
     },
+    // 用于定位此组件
     indexNum: {
       type: Number,
       default: 0
     },
+    // 是否显示 input 右侧小图标
     isClick: {
       type: Boolean,
       default: false
     },
-    noTrim: {
-      type: Boolean,
-      default: false
-    },
-    isBlur: {
-      type: Boolean,
-      default: false
-    },
-    isFocus: {
-      type: Boolean,
-      default: false
-    },
-    isRed: {
-      type: Boolean,
-      default: false
-    },
-    isCodeType: {
-      type: Boolean,
-      default: false
-    },
+    // data-disableEnter 标记
     disableEnter: {
       type: String,
       default: 'false'
@@ -133,18 +119,11 @@ export default {
     }
   },
   computed: {
-    // codeTypes() {
-    //   return this.$store.getters.codeTypes
-    // }
   },
   mounted () {
-    // document.getElementById("input" + this.name).style.color = this.isRed
-    //   ? "red"
-    //   : "";
   },
   methods: {
     changeValue (val) {
-      // var aa_bb = 1;
       this.$nextTick(() => {
         if (this.inputtype === 'number') {
           // 小数后两位
@@ -206,16 +185,7 @@ export default {
      * 点击事件
      */
     onClick () {
-      // if (!this.isClick) return;
       this.$emit('isClick', this.name, this.inputvalue)
-      // let obj = {
-      //     path: this.$route.path + '/doQuery/' + this.name,
-      //     params: {
-      //         path: this.$route.path,
-      //         ...this.datas
-      //     }
-      // };
-      // this.$store.dispatch('SET_COMMONPOST', obj);
     },
     /**
      * 选择事件
@@ -224,7 +194,6 @@ export default {
       if (this.money) {
         let reg = /^[0-9]\d*$/
         let regTwo = /^(([1-9]+|0)\.([0-9]{1,2}))$/
-        console.log(data)
         if (regTwo.test(data)) {
           if (data.split('.')[1].length === 1 && reg.test(data.split('.')[1])) {
             this.inputvalue = `${data}0`
@@ -258,15 +227,6 @@ export default {
         this.name,
         this.indexNum
       )
-      // if (!this.isBlur) return
-      // let obj = {
-      //   path: this.$route.path + '/blur/' + this.name,
-      //   params: {
-      //     path: this.$route.path,
-      //     ...this.datas
-      //   }
-      // }
-      // this.$store.dispatch('SET_COMMONPOST', obj)
     },
     /**
      * 获取焦点
@@ -371,7 +331,6 @@ export default {
 
 <style lang="less" scoped>
   .el-icon-search {
-    // color: #000;
     cursor: pointer;
   }
 </style>
