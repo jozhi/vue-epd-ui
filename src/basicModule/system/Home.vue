@@ -3,7 +3,7 @@
     <keep-alive v-if="!onlyPage">
       <Sidebar></Sidebar>
     </keep-alive>
-    <el-container 
+    <el-container
       :class="['is-vertical', onlyPage?'onlyPage':'']"
       :style="onlyPage? 'margin-left: 0;' : isSidebar ? 'margin-left: 256px;' : 'margin-left: 80px;'"
     >
@@ -46,6 +46,7 @@
   background-color: #fff;
 
   min-height: calc(100vh - 176px);
+  overflow-y: auto;
   font-size: 16px;
 }
 </style>
