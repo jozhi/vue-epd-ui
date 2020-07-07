@@ -46,6 +46,7 @@
   background-color: #fff;
 
   min-height: calc(100vh - 176px);
+  font-size: 16px;
 }
 </style>
 

@@ -2,9 +2,14 @@
 
 .titlePart {
   position: relative;
+  margin-bottom: 15px;
 }
 .titlePart .h1 {
   float: left;
   font-weight: normal;
   font-size: 26px;
+}
+pre{
+  margin: 10px 0;
+  border-radius: 3px;
 }
