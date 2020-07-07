@@ -19,6 +19,7 @@ Vue.use(epdUI)
 
 // 告诉Vue 要使用插件 vue-highlightjs
 import VueHighlightJS from 'vue-highlightjs'
+import 'highlight.js/styles/default.css'
 Vue.use(VueHighlightJS)
 
 import * as api from './api/index'
