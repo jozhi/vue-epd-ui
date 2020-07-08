@@ -37,7 +37,7 @@
   }
 }
 .content{
-  padding: 20px 15px 15px;
+  padding: 15px;
   text-align: left;
 }
 .innerPage{
@@ -45,7 +45,7 @@
   border-radius: 3px;
   background-color: #fff;
 
-  min-height: calc(100vh - 176px);
+  min-height: calc(100vh - 171px);
   overflow-y: auto;
   font-size: 16px;
 }

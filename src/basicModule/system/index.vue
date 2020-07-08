@@ -5,7 +5,5 @@
 </template>
 
 <style lang="less" scoped>
-.index {
-  padding-top:50px;
-}
+.index {}
 </style>
