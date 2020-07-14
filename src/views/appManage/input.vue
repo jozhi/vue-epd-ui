@@ -15,7 +15,7 @@
               <ep-input label="title" v-model="input" placeholder="请输入内容"></ep-input>
             </el-form>
           </div>
-          <div class="code">
+          <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分
             &lt;el-form&gt;
               &lt;ep-input label=&quot;title&quot; v-model=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/ep-input&gt;
@@ -59,7 +59,7 @@
               ></ep-input>
             </el-form>
           </div>
-          <div class="code">
+          <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分
             &lt;el-form&gt;
               &lt;!-- &lt;ep-input label=&quot;input&quot;&gt;&lt;/ep-input&gt; --&gt;
@@ -155,7 +155,7 @@
 
     </div>
     
-    <div class="ps">此模块基于 elementUI 二次封装</div>
+    <div class="supplementaryInstruction">* 此模块基于 elementUI 二次封装</div>
   </div>
 </template>
 
@@ -175,28 +175,30 @@ export default {
   },
   mounted(){
     const toggle = document.querySelector('#contPart')
+    
+    // 以下为点击事件
     function toggleCodeHeight(target){
-        let codeHeight = ''
-        // 如果第一次点击，初始化赋值
-        if(target.dataset.height){
-          codeHeight = target.dataset.height
-        }else{
-          target.dataset.height = target.offsetHeight+'px'
-          codeHeight = target.offsetHeight+'px'
-        }
-        if(target.style.height === ''){
-          target.style.height = codeHeight
-        }
+      let codeHeight = ''
+      // 如果第一次点击，初始化赋值
+      if(target.dataset.height){
+        codeHeight = target.dataset.height
+      }else{
+        target.dataset.height = target.offsetHeight+'px'
+        codeHeight = target.offsetHeight+'px'
+      }
+      if(target.style.height === ''){
+        target.style.height = codeHeight
+      }
 
-        // 延时解决第一次没有动画的bug
-        setTimeout(()=>{
-          // 控制显示隐藏逻辑
-          if( target.style.height == '0px' ){
-            target.style.height = codeHeight
-          }else{
-            target.style.height = '0px'
-          }
-        },0)
+      // 延时解决第一次没有动画的bug
+      setTimeout(()=>{
+        // 控制显示隐藏逻辑
+        if( target.style.height == '0px' ){
+          target.style.height = codeHeight
+        }else{
+          target.style.height = '0px'
+        }
+      },0)
     }
 
     // 底部显示隐藏按钮
@@ -211,6 +213,18 @@ export default {
         toggleCodeHeight(e.target.parentElement.previousElementSibling)
       }
     },false)
+
+
+    // 初始化 codeWrap ，进入页面先隐藏代码
+    const codeWraps = toggle.querySelectorAll('.codeWrap')
+    codeWraps.forEach(function(item){
+      let offsetHeight = item.offsetHeight+'px'
+      item.dataset.height = offsetHeight
+      item.style.height = offsetHeight
+      setTimeout(function(){
+        item.style.height = '0px'
+      },0)
+    })
 
   },
   methods: {
