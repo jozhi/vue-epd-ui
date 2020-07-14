@@ -6,7 +6,7 @@ import store from './store'
 
 // 公共 class 引入
 import './assets/css/cube.css';
-import './assets/css/page.css';
+import './assets/css/page.less';
 
 // ElementUI 引入
 import ElementUI from 'element-ui'

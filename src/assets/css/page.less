@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+.titlePart {
+  position: relative;
+  margin-bottom: 15px;
+}
+.titlePart .h1 {
+  float: left;
+  font-weight: normal;
+  font-size: 26px;
+}
+pre{
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+
+/* 组件示例样式 */
+.demoTitle{
+  margin: 0 30px;
+}
+.demoCont{
+  position: relative;
+  margin: 0 30px 100px;
+  border: 1px solid #d2d2d2;
+  
+  .toggleCode{
+    position: absolute;
+    right: 0;
+    top: -40px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: #1890ff;
+  }
+  .elm{
+    padding: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #d2d2d2;
+  }
+  .code{
+    font-size: 14px;
+    overflow: hidden;
+    transition: height .3s;
+    border-bottom: 1px solid #d2d2d2;
+    .hljs{
+      background-color: #f9f9f9;
+    }
+    pre{
+      margin: 0;
+    }
+  }
+  .toggle{
+    text-align: center;
+    a{
+      display: block;
+      color: #1890ff;
+      line-height: 40px;
+    }
+  }
+}
+
+/* table 样式 */
+.tableIntro{
+    position: relative;
+    margin: 0 30px 100px;
+  .moreInfo{
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    border: 5px solid transparent;
+    border-left: 5px solid #ddd;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  table{
+    tr,th,td{
+      border: 0 none;
+      border-bottom: 1px solid #ddd;;
+    }
+  }
+  .intro{
+    width: 100%;
+  }
+}
+
+
+
+
+/* re ElementUI style */
+#app .el-form-item {
+  margin-bottom: 0;
+}
