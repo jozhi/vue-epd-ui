@@ -4,6 +4,7 @@
       <strong class="h1">input组件</strong>
     </div>
     <div class="contPart" id="contPart">
+      
       <div class="secition">
         <h3 class="demoTitle">基础用法</h3>
         <div class="demo">
@@ -14,31 +15,56 @@
             </el-form>
           </div>
           <div class="code">
-            <pre v-highlightjs><code class="javascript">// html部分
-&lt;el-form&gt;
-  &lt;ep-input label=&quot;title&quot; v-model=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/ep-input&gt;
-&lt;/el-form&gt;
+            <pre v-highlightjs><code class="html">  // html部分
+            &lt;el-form&gt;
+              &lt;ep-input label=&quot;title&quot; v-model=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/ep-input&gt;
+            &lt;/el-form&gt;
 
-// js部分
-data() {
-  return {
-    input:''
-  };
-}
-</code></pre>
+            // js部分
+            data() {
+              return {
+                input:''
+              };
+            }
+            </code></pre>
           </div>
           <div class="toggle">
             <a href="javascript:;" class="toggleHand">显示隐藏代码</a>
           </div>
           <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
         </div>
-        
       </div>
+
+      <div class="secition tableIntro">
+        <h3 class="moreInfo">Input Attributes</h3>
+        <div class="cont">
+          <table class="intro">
+            <thead>
+              <tr> <th>参数</th> <th>说明</th> <th>类型</th> <th>可选值</th> <th>默认值</th> </tr>
+            </thead>
+            <tbody>
+              <tr> <td>value</td> <td>组件默认值</td> <td>String, Number</td> <td>-</td> <td>-</td> </tr>
+              <tr> <td>label</td> <td>组件左侧文字</td> <td>String</td> <td>-</td> <td>-</td> </tr>
+              <tr> <td>labelWidth</td> <td>组件左侧宽度</td> <td>String, Number</td> <td>-</td> <td>140</td> </tr>
+              <tr> <td>name</td> <td>原生name属性</td> <td>String</td> <td>-</td> <td>-</td> </tr>
+              <tr> <td>colspan</td> <td>el-col 宽度设置</td> <td>String, Number</td> <td>1~24</td> <td>24</td> </tr>
+              <tr> <td>maxlength</td> <td>最大长度</td> <td>String, Number</td> <td>-</td> <td>200</td> </tr>
+              <tr> <td>isClick</td> <td>是否显示 input 右侧小图标</td> <td>Boolean</td> <td>true/false</td> <td>false</td> </tr>
+              <tr> <td>ishide</td> <td>设置显示隐藏</td> <td>Boolean</td> <td>true/false</td> <td>false</td> </tr>
+              <tr> <td>eleDisabled</td> <td>是否禁止编辑</td> <td>Boolean</td> <td>true/false</td> <td>false</td> </tr>
+              <tr> <td>indexNum</td> <td>用于定位此组件</td> <td>Number</td> <td>-</td> <td>0</td> </tr>
+              <tr> <td>disableEnter</td> <td>data-disableEnter 标记</td> <td>String</td> <td>true/false</td> <td>false</td> </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
     </div>
     <!-- ep-input 必须要包裹在 el-form 内 -->
-    <el-form>
+    <!-- <el-form>
       <ep-input label="input"></ep-input>
-    </el-form>
+    </el-form> -->
   </div>
 </template>
 
@@ -48,7 +74,7 @@ data() {
 }
 .demo{
   position: relative;
-  margin: 0 30px 80px;
+  margin: 0 30px 100px;
   border: 1px solid #d2d2d2;
   
   .toggleCode{
@@ -68,7 +94,10 @@ data() {
     font-size: 14px;
     overflow: hidden;
     transition: height .3s;
-    // border-bottom: 1px solid #d2d2d2;
+    border-bottom: 1px solid #d2d2d2;
+    .hljs{
+      background-color: #f9f9f9;
+    }
     pre{
       margin: 0;
     }
@@ -80,6 +109,19 @@ data() {
       color: #1890ff;
       line-height: 40px;
     }
+  }
+}
+.tableIntro{
+    position: relative;
+    margin: 0 30px 100px;
+  .moreInfo{
+
+  }
+  table{
+
+  }
+  .intro{
+    width: 100%;
   }
 }
 
