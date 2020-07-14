@@ -5,9 +5,10 @@
     </div>
     <div class="contPart" id="contPart">
       
+      <!-- input 基础用法示例 -->
       <div class="secition">
         <h3 class="demoTitle">基础用法</h3>
-        <div class="demo">
+        <div class="demoCont">
           <div class="elm">
             <el-form>
               <!-- <ep-input label="input"></ep-input> -->
@@ -34,7 +35,74 @@
           <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
         </div>
       </div>
+      
+      <!-- input 事件用法示例 -->
+      <div class="secition">
+        <h3 class="demoTitle">事件用法示例</h3>
+        <div class="demoCont">
+          <div class="elm">
+            <el-form>
+              <!-- <ep-input label="input"></ep-input> -->
+              <ep-input
+                label="happy title"
+                v-model="input"
+                name='eventInput'
+                placeholder="请输入内容"
+                :isClick=true
 
+                @onRealTimeChange="onRealTimeChange"
+                @onChange="onChange"
+                @onBlur="onBlur"
+                @onFocus="onFocus"
+                @onEnter="onEnter"
+                @onClickIcon="onClickIcon"
+              ></ep-input>
+            </el-form>
+          </div>
+          <div class="code">
+            <pre v-highlightjs><code class="html">  // html部分
+            &lt;el-form&gt;
+              &lt;!-- &lt;ep-input label=&quot;input&quot;&gt;&lt;/ep-input&gt; --&gt;
+              &lt;ep-input
+                label=&quot;happy title&quot;
+                v-model=&quot;input&quot;
+                name=&#x27;eventInput&#x27;
+                placeholder=&quot;请输入内容&quot;
+                :isClick=true
+
+                @onRealTimeChange=&quot;onRealTimeChange&quot;
+                @onChange=&quot;onChange&quot;
+                @onBlur=&quot;onBlur&quot;
+                @onFocus=&quot;onFocus&quot;
+                @onEnter=&quot;onEnter&quot;
+                @onClickIcon=&quot;onClickIcon&quot;
+              &gt;&lt;/ep-input&gt;
+            &lt;/el-form&gt;
+
+            // js部分
+            data() {
+              return {
+                input:''
+              };
+            },
+            methods: {
+              onRealTimeChange(o){ console.log('onRealTimeChange', o); },
+              onChange(o){ console.log('onChange', o); },
+              onBlur(o){ console.log('onBlur', o); },
+              onFocus(o){ console.log('onFocus', o); },
+              onEnter(o){ console.log('onEnter', o); },
+              onClickIcon(o){ console.log('onClickIcon', o); },
+            }
+            </code></pre>
+          </div>
+          <div class="toggle">
+            <a href="javascript:;" class="toggleHand">显示隐藏代码</a>
+          </div>
+          <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
+        </div>
+      </div>
+
+      <!-- 组件参数介绍 -->
       <div class="secition tableIntro">
         <h3 class="moreInfo">Input Attributes</h3>
         <div class="cont">
@@ -59,7 +127,7 @@
         </div>
       </div>
 
-
+      <!-- 组件事件介绍 -->
       <div class="secition tableIntro">
         <h3 class="moreInfo">Input Events</h3>
         <div class="cont">
@@ -69,97 +137,29 @@
             </thead>
             <tbody>
               <tr> <td>onRealTimeChange</td>
-                <td>根据组件值更改实时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>根据组件值更改实时触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
               <tr> <td>onChange</td>
-                <td>仅在输入框失去焦点或用户按下回车时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>仅在输入框失去焦点或用户按下回车时触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
               <tr> <td>onBlur</td>
-                <td>失去焦点时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>失去焦点时触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
               <tr> <td>onFocus</td>
-                <td>获得焦点时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>获得焦点时触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
               <tr> <td>onEnter</td>
-                <td>原生事件 -- 敲击回车时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>原生事件 -- 敲击回车时触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
               <tr> <td>onClick-icon</td>
-                <td>input右侧小按钮点击触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+                <td>input右侧小按钮点击触发</td> <td>{ name | inputvalue | indexNumber }</td> </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-
     </div>
-    <!-- ep-input 必须要包裹在 el-form 内 -->
-    <!-- <el-form>
-      <ep-input label="input"></ep-input>
-    </el-form> -->
+    
+    <div class="ps">此模块基于 elementUI 二次封装</div>
   </div>
 </template>
 
 <style lang="less" scope>
-.demoTitle{
-  margin: 0 30px;
-}
-.demo{
-  position: relative;
-  margin: 0 30px 100px;
-  border: 1px solid #d2d2d2;
-  
-  .toggleCode{
-    position: absolute;
-    right: 0;
-    top: -40px;
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: #1890ff;
-  }
-  .elm{
-    padding: 10px;
-    overflow: hidden;
-    border-bottom: 1px solid #d2d2d2;
-  }
-  .code{
-    font-size: 14px;
-    overflow: hidden;
-    transition: height .3s;
-    border-bottom: 1px solid #d2d2d2;
-    .hljs{
-      background-color: #f9f9f9;
-    }
-    pre{
-      margin: 0;
-    }
-  }
-  .toggle{
-    text-align: center;
-    a{
-      display: block;
-      color: #1890ff;
-      line-height: 40px;
-    }
-  }
-}
-.tableIntro{
-    position: relative;
-    margin: 0 30px 100px;
-  .moreInfo{
-    display: inline-block;
-    margin-bottom: 10px;
-    padding-left: 8px;
-    border: 5px solid transparent;
-    border-left: 5px solid #ddd;
-    font-weight: bold;
-    line-height: 1.2;
-  }
-  table{
-
-    tr,th,td{
-      border: 0 none;
-      border-bottom: 1px solid #ddd;;
-    }
-  }
-  .intro{
-    width: 100%;
-  }
-}
 
 </style>
 
@@ -213,6 +213,13 @@ export default {
     },false)
 
   },
-  methods: { }
+  methods: {
+    onRealTimeChange(o){ console.log('onRealTimeChange', o); },
+    onChange(o){ console.log('onChange', o); },
+    onBlur(o){ console.log('onBlur', o); },
+    onFocus(o){ console.log('onFocus', o); },
+    onEnter(o){ console.log('onEnter', o); },
+    onClickIcon(o){ console.log('onClickIcon', o); },
+  }
 };
 </script>

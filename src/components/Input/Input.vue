@@ -112,30 +112,30 @@ export default {
   methods: {
     /** * input右侧小按钮点击触发 */
     onClick () {
-      this.$emit('onClick-icon', this.name, this.inputvalue, this.indexNumber)
+      this.$emit('onClickIcon', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber})
     },
 
 
     /** * 在 Input 值改变时触发 */
     changeValue () {
-      console.log('this.inputvalue:',this.inputvalue);
-      this.$emit('onRealTimeChange', this.name, this.inputvalue, this.indexNumber )
+      // console.log('this.inputvalue:',this.inputvalue);
+      this.$emit('onRealTimeChange', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber} )
     },
     /** * 仅在输入框失去焦点或用户按下回车时触发 */
     onChange () {
-      this.$emit('onChange', this.name, this.inputvalue, this.indexNumber )
+      this.$emit('onChange', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber} )
     },
     /** * 在 Input 失去焦点时触发	 */
     onBlur () {
-      this.$emit('onBlur', this.name, this.inputvalue, this.indexNumber )
+      this.$emit('onBlur', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber} )
     },
     /** * 在 Input 获得焦点时触发	 */
     onFocus () {
-      this.$emit('onFocus', this.name, this.inputvalue, this.indexNumber)
+      this.$emit('onFocus', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber})
     },
     /** * 原生事件 -- 敲击回车时触发 */
     onEnter () {
-      this.$emit('onEnter', this.name, this.inputvalue, this.indexNumber)
+      this.$emit('onEnter', {name:this.name, inputvalue:this.inputvalue, indexNumber:this.indexNumber})
     },
   }
 }
