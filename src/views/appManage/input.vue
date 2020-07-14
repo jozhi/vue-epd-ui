@@ -59,7 +59,33 @@
         </div>
       </div>
 
-      
+
+      <div class="secition tableIntro">
+        <h3 class="moreInfo">Input Events</h3>
+        <div class="cont">
+          <table class="intro">
+            <thead>
+              <tr> <th>事件名称	</th> <th>说明</th> <th>回调参数</th> </tr>
+            </thead>
+            <tbody>
+              <tr> <td>onRealTimeChange</td>
+                <td>根据组件值更改实时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+              <tr> <td>onChange</td>
+                <td>仅在输入框失去焦点或用户按下回车时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+              <tr> <td>onBlur</td>
+                <td>失去焦点时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+              <tr> <td>onFocus</td>
+                <td>获得焦点时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+              <tr> <td>onEnter</td>
+                <td>原生事件 -- 敲击回车时触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+              <tr> <td>onClick-icon</td>
+                <td>input右侧小按钮点击触发</td> <td>( name | inputvalue | indexNumber )</td> </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
     </div>
     <!-- ep-input 必须要包裹在 el-form 内 -->
     <!-- <el-form>
@@ -115,10 +141,20 @@
     position: relative;
     margin: 0 30px 100px;
   .moreInfo{
-
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    border: 5px solid transparent;
+    border-left: 5px solid #ddd;
+    font-weight: bold;
+    line-height: 1.2;
   }
   table{
 
+    tr,th,td{
+      border: 0 none;
+      border-bottom: 1px solid #ddd;;
+    }
   }
   .intro{
     width: 100%;
