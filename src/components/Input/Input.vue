@@ -44,7 +44,7 @@ export default {
     // input 前 lable 的宽度
     labelWidth: {
       type: [String, Number],
-      default: '140'
+      default: '100'
     },
     // placeholder 占位符
     placeholder: {
@@ -110,9 +110,9 @@ export default {
   // created () {},
   // mounted () {},
   methods: {
-    /** * input右侧小按钮点击事件 */
+    /** * input右侧小按钮点击触发 */
     onClick () {
-      this.$emit('icon-onClick', this.name, this.inputvalue)
+      this.$emit('onClick-icon', this.name, this.inputvalue, this.indexNumber)
     },
 
 
@@ -131,7 +131,7 @@ export default {
     },
     /** * 在 Input 获得焦点时触发	 */
     onFocus () {
-      this.$emit('onFocus', this.name, this.inputvalue)
+      this.$emit('onFocus', this.name, this.inputvalue, this.indexNumber)
     },
     /** * 原生事件 -- 敲击回车时触发 */
     onEnter () {
