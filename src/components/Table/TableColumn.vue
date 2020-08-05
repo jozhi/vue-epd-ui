@@ -183,7 +183,7 @@
 </template>
 
 <script type="es6">
-import dict from '@/mock/dict.js'
+import dict from './dict/dict.js'
 export default {
   props: {
     addtext: {
