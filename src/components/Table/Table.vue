@@ -596,8 +596,9 @@ export default {
       return sums;
     },
 
-    objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-      console.log(row, column, rowIndex, columnIndex);
+    objectSpanMethod({ rowIndex, columnIndex }) {
+      // console.log('objectSpanMethod:',row, column, rowIndex, columnIndex);
+      // console.log(row, column, rowIndex, columnIndex);
       if (this.isSpanMethods) {
         if (columnIndex === 0 && rowIndex === 1) {
           return [1, 5];
