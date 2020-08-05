@@ -229,7 +229,7 @@ export default {
       default: false,
     },
     maxheight: {
-      type: Number,
+      type: [Number,String],
       default: 10000,
     },
     onlyData: {
