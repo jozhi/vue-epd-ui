@@ -14,7 +14,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 // epdUI 引入
-import epdUI from '@/components'
+import epdUI from '@/components/index.js'
 Vue.use(epdUI)
 
 // 告诉Vue 要使用插件 vue-highlightjs
