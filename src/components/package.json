@@ -1,7 +1,7 @@
 {
   "name": "epd-ui",
   "description": "vue epd-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "jiaoshengzhi <11194720@qq.com>",
   "license": "MIT",
   "private": false,
