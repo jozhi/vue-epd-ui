@@ -9,13 +9,11 @@
         <h3 class="demoTitle">基础用法</h3>
         <div class="demoCont">
           <div class="elm">
-            <el-form>
               <epd-table :data="tableData">
                 <epd-table-column editor="text" name="date" header="日期" width="180"></epd-table-column>
                 <epd-table-column editor="text" name="name" header="姓名" width="180"></epd-table-column>
                 <epd-table-column editor="text" name="address" header="地址" ></epd-table-column>
               </epd-table>
-            </el-form>
           </div>
           <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分

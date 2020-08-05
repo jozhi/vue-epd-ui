@@ -18,6 +18,11 @@
           @change="checkItem($event, scope.row, scope)"
         ></el-checkbox>
       </template>
+      <template v-else-if="editor === ''">
+        <div class="tableColumnInputStyle02" :style="SelfStyle">
+          <span>{{scope.row[name] ||''}}</span>
+        </div>
+      </template>
       <template v-else-if="editor === 'timepicker'">
         <div
           class="tableColumnInputStyle"
