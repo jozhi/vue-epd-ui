@@ -29,7 +29,7 @@
 
 <script type="es6">
 export default {
-  name: 'ep-input',
+  name: 'epd-input',
   props: {
     // 默认值
     value: {

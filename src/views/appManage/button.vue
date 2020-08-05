@@ -6,26 +6,26 @@
     <div class="pb48 underline">
       <h2>Button组件</h2>
       <p>1.基础样式：type</p>
-      <ep-button>default</ep-button>
-      <ep-button type="success">success</ep-button>
-      <ep-button type="error">error</ep-button>
-      <ep-button type="warning">warning</ep-button>
-      <ep-button type="info" style="min-width:120px">info</ep-button>
+      <epd-button>default</epd-button>
+      <epd-button type="success">success</epd-button>
+      <epd-button type="error">error</epd-button>
+      <epd-button type="warning">warning</epd-button>
+      <epd-button type="info" style="min-width:120px">info</epd-button>
       <p>2.按钮大小：size</p>
-      <ep-button>default</ep-button>
-      <ep-button size="small">small</ep-button>
-      <ep-button size="medium">medium</ep-button>
-      <ep-button size="large">large</ep-button>
+      <epd-button>default</epd-button>
+      <epd-button size="small">small</epd-button>
+      <epd-button size="medium">medium</epd-button>
+      <epd-button size="large">large</epd-button>
       <p>3.按钮形状：shape</p>
-      <ep-button>default</ep-button>
-      <ep-button shape="circle" type="info">circle</ep-button>
-      <ep-button shape="rectangle" type="info">rectangle</ep-button>
+      <epd-button>default</epd-button>
+      <epd-button shape="circle" type="info">circle</epd-button>
+      <epd-button shape="rectangle" type="info">rectangle</epd-button>
       <p>4.禁用按钮：isDisabled</p>
-      <ep-button isDisabled>default</ep-button>
-      <ep-button type="success" isDisabled>success</ep-button>
-      <ep-button type="error" isDisabled>error</ep-button>
-      <ep-button type="warning" isDisabled>warning</ep-button>
-      <ep-button type="info" isDisabled>info</ep-button>
+      <epd-button isDisabled>default</epd-button>
+      <epd-button type="success" isDisabled>success</epd-button>
+      <epd-button type="error" isDisabled>error</epd-button>
+      <epd-button type="warning" isDisabled>warning</epd-button>
+      <epd-button type="info" isDisabled>info</epd-button>
     </div>
   </div>
 </template>

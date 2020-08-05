@@ -11,14 +11,14 @@
         <div class="demoCont">
           <div class="elm">
             <el-form>
-              <!-- <ep-input label="input"></ep-input> -->
-              <ep-input label="title" v-model="input" placeholder="请输入内容"></ep-input>
+              <!-- <epd-input label="input"></epd-input> -->
+              <epd-input label="title" v-model="input" placeholder="请输入内容"></epd-input>
             </el-form>
           </div>
           <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分
             &lt;el-form&gt;
-              &lt;ep-input label=&quot;title&quot; v-model=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/ep-input&gt;
+              &lt;epd-input label=&quot;title&quot; v-model=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/epd-input&gt;
             &lt;/el-form&gt;
 
             // js部分
@@ -42,8 +42,8 @@
         <div class="demoCont">
           <div class="elm">
             <el-form>
-              <!-- <ep-input label="input"></ep-input> -->
-              <ep-input
+              <!-- <epd-input label="input"></epd-input> -->
+              <epd-input
                 label="happy title"
                 v-model="input"
                 name='eventInput'
@@ -56,14 +56,14 @@
                 @onFocus="onFocus"
                 @onEnter="onEnter"
                 @onClickIcon="onClickIcon"
-              ></ep-input>
+              ></epd-input>
             </el-form>
           </div>
           <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分
             &lt;el-form&gt;
-              &lt;!-- &lt;ep-input label=&quot;input&quot;&gt;&lt;/ep-input&gt; --&gt;
-              &lt;ep-input
+              &lt;!-- &lt;epd-input label=&quot;input&quot;&gt;&lt;/epd-input&gt; --&gt;
+              &lt;epd-input
                 label=&quot;happy title&quot;
                 v-model=&quot;input&quot;
                 name=&#x27;eventInput&#x27;
@@ -76,7 +76,7 @@
                 @onFocus=&quot;onFocus&quot;
                 @onEnter=&quot;onEnter&quot;
                 @onClickIcon=&quot;onClickIcon&quot;
-              &gt;&lt;/ep-input&gt;
+              &gt;&lt;/epd-input&gt;
             &lt;/el-form&gt;
 
             // js部分
@@ -159,9 +159,7 @@
   </div>
 </template>
 
-<style lang="less" scope>
-
-</style>
+<style lang="less" scope> </style>
 
 
 <script>

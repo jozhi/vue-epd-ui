@@ -23,6 +23,10 @@ module.exports = [
         'title': 'select组件',
         'location': '/select'
       },
+      {
+        'title': 'table组件',
+        'location': '/table'
+      },
     ]
   },
   // {

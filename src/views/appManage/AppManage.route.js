@@ -1,6 +1,7 @@
 const button = () => import('./button')
 const input = () => import('./input')
 const select = () => import('./select')
+const table = () => import('./table')
 
 
 export default [
@@ -21,6 +22,12 @@ export default [
     name: 'select',
     meta: {title: 'select'},
     component: select
+  },
+  {
+    path: '/table',
+    name: 'table',
+    meta: {title: 'table'},
+    component: table
   },
 ]
 
