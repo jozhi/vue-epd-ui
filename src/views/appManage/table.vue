@@ -10,9 +10,9 @@
         <div class="demoCont">
           <div class="elm">
             <epd-table :data="tableData" maxheight="200" style="overflow-y:auto;">
-              <epd-table-column editor="text" name="date" header="日期" width="180"></epd-table-column>
-              <epd-table-column editor="text" name="name" header="姓名" width="180"></epd-table-column>
-              <epd-table-column editor="text" name="address" header="地址" ></epd-table-column>
+              <epd-table-column editor="text" name="id" header="id" width="50"></epd-table-column>
+              <epd-table-column editor="text" name="create_time" header="创建日期"></epd-table-column>
+              <epd-table-column editor="text" name="name" header="姓名"></epd-table-column>
             </epd-table>
           </div>
           <div class="codeWrap">
@@ -25,7 +25,7 @@
                 &lt;/epd-table&gt;
               &lt;/el-form&gt;
 
-              // js部分
+              // 数据部分
               tableData: {
                 Data:[
                   {
@@ -51,9 +51,9 @@
         </div>
       </div>
 
-      <!-- input 事件用法示例 -->
+      <!-- Table 列属性遍历生成 -->
       <div class="secition">
-        <h3 class="demoTitle">事件用法示例</h3>
+        <h3 class="demoTitle">列属性遍历生成table</h3>
         <div class="demoCont">
           <div class="elm">
             <epd-table :data="tableData" maxheight="200" style="overflow-y:auto;">
@@ -62,45 +62,74 @@
           </div>
           <div class="codeWrap">
             <pre v-highlightjs><code class="html">  // html部分
-            &lt;el-form&gt;
-              &lt;!-- &lt;ep-input label=&quot;input&quot;&gt;&lt;/ep-input&gt; --&gt;
-              &lt;ep-input
-                label=&quot;happy title&quot;
-                v-model=&quot;input&quot;
-                name=&#x27;eventInput&#x27;
-                placeholder=&quot;请输入内容&quot;
-                :isClick=true
+              &lt;epd-table :data=&quot;tableData&quot; maxheight=&quot;200&quot; style=&quot;overflow-y:auto;&quot;&gt;
+                &lt;epd-table-column v-for=&quot;(item ,index) in columns&quot; :key=&quot;index&quot; :name=&quot;item.name&quot; :header=&quot;item.name&quot;&gt;&lt;/epd-table-column&gt;
+              &lt;/epd-table&gt;
 
-                @onRealTimeChange=&quot;onRealTimeChange&quot;
-                @onChange=&quot;onChange&quot;
-                @onBlur=&quot;onBlur&quot;
-                @onFocus=&quot;onFocus&quot;
-                @onEnter=&quot;onEnter&quot;
-                @onClickIcon=&quot;onClickIcon&quot;
-              &gt;&lt;/ep-input&gt;
-            &lt;/el-form&gt;
+              // 数据部分
+              data() {
+                return {
+                  // 表格数据
+                  tableData: {
+                    Data:[
+                      {"is_system":"0","create_time":"2019-10-21 16:14:54.0","link_type_code":"mysql","operator_id":"2","modify_time":"2019-10-28 16:46:59.0","description":null,"is_delete":"1","operator_name":"admin","name":"test","creator_id":"2","creator_name":"admin","id":"1","folder_id":"71","m_id":"2"}
+                      // more data
+                    ]
+                  },
+                  // 表格列字段定义
+                  columns:[
+                    {"title":"id","key":"id","dataIndex":"id","name":"id"},
+                    {"title":"name","key":"name","dataIndex":"name","name":"name"},
+                    {"title":"description","key":"description","dataIndex":"description","name":"description"},
+                    {"title":"folder_id","key":"folder_id","dataIndex":"folder_id","name":"folder_id"},
+                    // more column
+                  ]
+                };
+              }
+            </code></pre>
+          </div>
+          <div class="toggle">
+            <a href="javascript:;" class="toggleHand">显示隐藏代码</a>
+          </div>
+          <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
+        </div>
+      </div>
 
-            // js部分
-            data() {
-              return {
-                input:''
-              };
-            },
-        
-            methods: {
-              onRealTimeChange(o){ console.log('onRealTimeChange', o); },
-        
-              onChange(o){ console.log('onChange', o); },
-        
-              onBlur(o){ console.log('onBlur', o); },
-        
-              onFocus(o){ console.log('onFocus', o); },
-        
-              onEnter(o){ console.log('onEnter', o); },
-        
-              onClickIcon(o){ console.log('onClickIcon', o); },
-        
-            }
+      <!-- Table 列属性遍历生成 -->
+      <div class="secition">
+        <h3 class="demoTitle">列属性遍历生成table</h3>
+        <div class="demoCont">
+          <div class="elm">
+            <epd-table :data="tableData" maxheight="200" style="overflow-y:auto;">
+              <epd-table-column v-for="(item ,index) in columns" :key="index" :name="item.name" :header="item.name"></epd-table-column>
+            </epd-table>
+          </div>
+          <div class="codeWrap">
+            <pre v-highlightjs><code class="html">  // html部分
+              &lt;epd-table :data=&quot;tableData&quot; maxheight=&quot;200&quot; style=&quot;overflow-y:auto;&quot;&gt;
+                &lt;epd-table-column v-for=&quot;(item ,index) in columns&quot; :key=&quot;index&quot; :name=&quot;item.name&quot; :header=&quot;item.name&quot;&gt;&lt;/epd-table-column&gt;
+              &lt;/epd-table&gt;
+
+              // 数据部分
+              data() {
+                return {
+                  // 表格数据
+                  tableData: {
+                    Data:[
+                      {"is_system":"0","create_time":"2019-10-21 16:14:54.0","link_type_code":"mysql","operator_id":"2","modify_time":"2019-10-28 16:46:59.0","description":null,"is_delete":"1","operator_name":"admin","name":"test","creator_id":"2","creator_name":"admin","id":"1","folder_id":"71","m_id":"2"}
+                      // more data
+                    ]
+                  },
+                  // 表格列字段定义
+                  columns:[
+                    {"title":"id","key":"id","dataIndex":"id","name":"id"},
+                    {"title":"name","key":"name","dataIndex":"name","name":"name"},
+                    {"title":"description","key":"description","dataIndex":"description","name":"description"},
+                    {"title":"folder_id","key":"folder_id","dataIndex":"folder_id","name":"folder_id"},
+                    // more column
+                  ]
+                };
+              }
             </code></pre>
           </div>
           <div class="toggle">
