@@ -7,9 +7,7 @@
     :sortable="sortable"
     align="center"
     :width="width"
-    v-if="
-      titleList.length >= 0 && titleList.indexOf(header) == '-1' && titleControl
-    "
+    v-if="titleControl"
   >
     <template slot-scope="scope">
       <span v-if="editor === 'index'">{{ scope.$index + 1 }}</span>
@@ -370,7 +368,6 @@ export default {
     },
     codeTypes: {
       get: function() {
-        // console.log(this.$store.getters.codeTypes && this.$store.getters.codeTypes.id)
         let codeTypes =
           (sessionStorage.getItem(this.$route.path) &&
             JSON.parse(sessionStorage.getItem(this.$route.path))) ||
@@ -389,9 +386,6 @@ export default {
     },
     tableData() {
       return this.$parent.$parent.data.Data || []
-    },
-    titleList() {
-      return this.$parent.$parent.list || []
     },
     titleFilter() {
       return this.$parent.$parent.titleFilter || []
@@ -447,7 +441,6 @@ export default {
   },
   data() {
     return {
-      checked: [],
       selectoptions: [],
       time: null,
       selectList: [],

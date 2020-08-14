@@ -41,6 +41,7 @@
       </el-popover>-->
     </div>
 
+    <!-- TODO 预删除 -->
     <el-popover v-if="titleFilter.length > 0" placement="top-start" title="当前列" width="300" trigger="click">
       <el-checkbox-group v-model="list">
         <el-checkbox v-for="(item, index) in titleFilter" :key="index" :label="item" :title="item">{{ item }}</el-checkbox>
@@ -73,7 +74,7 @@
         @row-dblclick="rowDblclick"
         @cell-click="cellclick"
         @cell-dblclick="cellDbClick"
-        :id="selfRef || 'titleControl'"
+        :id="selfRef || 'epdTable'"
         stripe
       >
         <slot></slot>
@@ -100,7 +101,7 @@
           @row-dblclick="rowDblclick"
           @cell-click="cellclick"
           @cell-dblclick="cellDbClick"
-          :id="selfRef || 'titleControl'"
+          :id="selfRef || 'epdTable'"
           stripe
         >
           <slot></slot>
@@ -157,7 +158,7 @@
           @row-dblclick="rowDblclick"
           @cell-click="cellclick"
           @cell-dblclick="cellDbClick"
-          :id="selfRef || 'titleControl'"
+          :id="selfRef || 'epdTable'"
           stripe
         >
           <slot></slot>
@@ -185,7 +186,7 @@
         @row-dblclick="rowDblclick"
         @cell-click="cellclick"
         @cell-dblclick="cellDbClick"
-        :id="selfRef || 'titleControl'"
+        :id="selfRef || 'epdTable'"
         stripe
       >
         <slot></slot>
@@ -251,10 +252,6 @@ export default {
         };
       },
     },
-    // allPageNum:{
-    //   type: string,
-    //   default: 0
-    // },
     border: {
       type: Boolean,
       default: false,
@@ -337,11 +334,9 @@ export default {
     // 监听传入主数据的改变以更新显示数据
     data: {
       handler(newValue) {
-        // console.log('oldValue',oldValue);
-        this.$emit('getData', newValue);
+        // this.$emit('getData', newValue);
         if (newValue.Data) {
           this.tableData = this.onlyData ? newValue.Data.slice((this.currentPage - 1) * this.pagesize, this.currentPage * this.pagesize) : newValue.Data;
-          // this.allPageNum = newValue.total > 0 ? newValue.total : 0
 
           if (this.titleControl) {
             this.getTitleListName();
@@ -441,12 +436,10 @@ export default {
       this.tableData = this.data.Data;
     }
 
-    // console.log(this.info);
-    // this.list.push  = this.titleFilter;
   },
   mounted() {
-    console.log('this.selfRef:::',this.selfRef);
-    console.log('this.summaryTitles:::',this.summaryTitles);
+    // console.log('this.selfRef:::',this.selfRef);
+    // console.log('this.summaryTitles:::',this.summaryTitles);
     // 当前 table 的 ref 对象
     this.thisSelfRef = this.selfRef ? this.$refs[this.selfRef] : this.$refs.multipleTable
 
@@ -457,10 +450,7 @@ export default {
     // 表格初始化时获得列名
     this.toolsFlag = true;
 
-
-          console.log('############## this.titleControl:',this.titleControl);
-
-
+    // console.log('############## this.titleControl:',this.titleControl);
 
     if (this.titleControl) {
       this.getTitleListName();
@@ -491,10 +481,9 @@ export default {
     // 获得控制列显隐列表（表头列表）
     getTitleListName() {
       const self = this;
-      const selfId = self.selfRef || 'titleControl'
+      const selfId = self.selfRef || 'epdTable'
       self.tableTitle = [];
       setTimeout(function () {
-        
         
         if (document.getElementById(selfId)) {
           var titles = document.getElementById(selfId).getElementsByTagName('thead')[0].getElementsByClassName('cell');
