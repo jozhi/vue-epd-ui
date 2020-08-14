@@ -1,7 +1,7 @@
 <template>
   <div class="ep-table">
-    <div class="toolsBar" v-if="titleControl || (JSON.stringify(exportParm) != '{}')">
-      <el-popover v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
+    <div class="toolsBar cf" v-if="titleControl || (JSON.stringify(exportParm) != '{}')">
+      <el-popover style="float:right;" v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
         <div v-for="(item, i) in tableTitle" :key="i">
           <el-checkbox v-model="item.checked">{{ item.title }}</el-checkbox>
         </div>
@@ -48,18 +48,12 @@
       <div class="ep-title-filter" slot="reference">
         <el-button type="text" size="mini" icon="iconfont ep-icon-filter"></el-button>
       </div>
-      <!-- <el-popover placement="bottom" width="200" trigger="hover">
-        <div v-for="item in tableTitle" :key="item">
-          <el-checkbox v-model="item.checked">{{ item.title }}</el-checkbox>
-        </div>
-        <el-button slot="reference">显示列控制</el-button>
-      </el-popover>-->
     </el-popover>
 
     <!-- 单个table（不分类显示） -->
     <div v-if="!isGroupTable">
       <el-table
-        ref="multipleTable"
+        :ref="selfRef || 'multipleTable'"
         :show-summary="summaryTitles.length != 0"
         :summary-method="getSummaries"
         :span-method="objectSpanMethod"
@@ -79,7 +73,7 @@
         @row-dblclick="rowDblclick"
         @cell-click="cellclick"
         @cell-dblclick="cellDbClick"
-        id="titleControl"
+        :id="selfRef || 'titleControl'"
         stripe
       >
         <slot></slot>
@@ -91,7 +85,7 @@
       <div style="margin-bottom: 10px" :class="{flyTitle: flyTitle}" id="flyTitle">
         <el-table
           :span-method="objectSpanMethod"
-          ref="mainTable"
+          :ref="selfRef || 'multipleTable'"
           class="mainTable"
           @row-click="rowclick"
           highlight-current-row
@@ -106,7 +100,7 @@
           @row-dblclick="rowDblclick"
           @cell-click="cellclick"
           @cell-dblclick="cellDbClick"
-          id="titleControl"
+          :id="selfRef || 'titleControl'"
           stripe
         >
           <slot></slot>
@@ -147,7 +141,7 @@
           :summary-method="getSummaries"
           :span-method="objectSpanMethod"
           :show-header="i === key"
-          ref="multipleTable"
+          :ref="selfRef || 'multipleTable'"
           class="multipleTable"
           @row-click="rowclick"
           highlight-current-row
@@ -163,7 +157,7 @@
           @row-dblclick="rowDblclick"
           @cell-click="cellclick"
           @cell-dblclick="cellDbClick"
-          id="titleControl"
+          :id="selfRef || 'titleControl'"
           stripe
         >
           <slot></slot>
@@ -173,7 +167,7 @@
     <!-- 多个table但没有数据时以单个table表格显示暂无数据 -->
     <div v-if="isGroupTable && tableData.length === 0" style="text-align:center;color:#909399">
       <el-table
-        ref="multipleTable"
+        :ref="selfRef || 'multipleTable'"
         :show-summary="summaryTitles.length != 0"
         :summary-method="getSummaries"
         :span-method="objectSpanMethod"
@@ -191,7 +185,7 @@
         @row-dblclick="rowDblclick"
         @cell-click="cellclick"
         @cell-dblclick="cellDbClick"
-        id="titleControl"
+        :id="selfRef || 'titleControl'"
         stripe
       >
         <slot></slot>
@@ -227,6 +221,10 @@ export default {
     titleControl: {
       type: Boolean,
       default: false,
+    },
+    selfRef: {
+      type: String,
+      default: '',
     },
     maxheight: {
       type: [Number,String],
@@ -344,6 +342,7 @@ export default {
         if (newValue.Data) {
           this.tableData = this.onlyData ? newValue.Data.slice((this.currentPage - 1) * this.pagesize, this.currentPage * this.pagesize) : newValue.Data;
           // this.allPageNum = newValue.total > 0 ? newValue.total : 0
+
           if (this.titleControl) {
             this.getTitleListName();
           }
@@ -372,7 +371,7 @@ export default {
     },
     // tableData: {
     //   handler(val) {
-    //     for (const d of this.$refs.multipleTable) {
+    //     for (const d of this.thisSelfRef) {
     //       d.bodyWrapper.addEventListener('scroll', (res) => {
     //         this.howLong = res.target.scrollLeft
     //       }, false)
@@ -384,7 +383,7 @@ export default {
     // 同步横向滚动条
     howLong: {
       handler() {
-        for (const d of this.$refs.multipleTable) {
+        for (const d of this.thisSelfRef) {
           d.bodyWrapper.scrollLeft = this.howLong;
         }
         this.$refs.mainTable.bodyWrapper.scrollLeft = this.howLong;
@@ -399,7 +398,6 @@ export default {
       },
     },
   },
-  beforeDestroy() {},
   computed: {
     // 计算分类显示依据
     groupTable() {
@@ -415,9 +413,9 @@ export default {
       return groupCollect; // 形式如，{{groupName:'',children:[{},{}]}
     },
   },
-
   data() {
     return {
+      thisSelfRef:null,
       howLong: null,
       howWidth: null,
       tableTitle: [], // 存放列表表头对象，{title:"",checked:}控制列显示用
@@ -434,8 +432,8 @@ export default {
   },
   created() {
     // this.tableData = this.data.Data
-    console.log('this.onlyData', this.onlyData);
-    console.log('this.data.Data', this.data.Data);
+    // console.log('this.onlyData', this.onlyData);
+    // console.log('this.data.Data', this.data.Data);
 
     if (this.onlyData) {
       this.tableData = this.data.Data.slice((this.currentPage - 1) * this.pagesize, this.currentPage * this.pagesize);
@@ -447,12 +445,23 @@ export default {
     // this.list.push  = this.titleFilter;
   },
   mounted() {
+    console.log('this.selfRef:::',this.selfRef);
+    console.log('this.summaryTitles:::',this.summaryTitles);
+    // 当前 table 的 ref 对象
+    this.thisSelfRef = this.selfRef ? this.$refs[this.selfRef] : this.$refs.multipleTable
+
     // 监听表头高度
     if (this.isGroupTable) {
       window.addEventListener('scroll', this.handleScrollx, true);
     }
     // 表格初始化时获得列名
     this.toolsFlag = true;
+
+
+          console.log('############## this.titleControl:',this.titleControl);
+
+
+
     if (this.titleControl) {
       this.getTitleListName();
     }
@@ -482,11 +491,17 @@ export default {
     // 获得控制列显隐列表（表头列表）
     getTitleListName() {
       const self = this;
+      const selfId = self.selfRef || 'titleControl'
       self.tableTitle = [];
       setTimeout(function () {
-        if (document.getElementById('titleControl')) {
-          var titles = document.getElementById('titleControl').getElementsByTagName('thead')[0].getElementsByClassName('cell');
+        
+        
+        if (document.getElementById(selfId)) {
+          var titles = document.getElementById(selfId).getElementsByTagName('thead')[0].getElementsByClassName('cell');
           for (var i = 0; i < titles.length; i++) {
+            if(titles[i].firstChild && titles[i].firstChild.className ==='el-checkbox'){
+              continue;
+            }
             self.tableTitle.push({
               title: titles[i].innerText,
               checked: true,
@@ -506,8 +521,8 @@ export default {
           false
         );
       }
-      if (this.$refs.multipleTable.length && this.$refs.multipleTable.length > 0) {
-        for (const d of this.$refs.multipleTable) {
+      if (this.thisSelfRef.length && this.thisSelfRef.length > 0) {
+        for (const d of this.thisSelfRef) {
           d.bodyWrapper.addEventListener(
             'scroll',
             (res) => {
@@ -519,7 +534,7 @@ export default {
       }
     },
     delScrollEventLister() {
-      for (const d of this.$refs.multipleTable) {
+      for (const d of this.thisSelfRef) {
         d.bodyWrapper.removeEventListener(
           'scroll',
           (res) => {
@@ -624,10 +639,10 @@ export default {
       this.mytable = e;
       if (e) {
         this.data.Data.forEach((row) => {
-          this.$refs.multipleTable.toggleRowSelection(row, true);
+          this.thisSelfRef.toggleRowSelection(row, true);
         });
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.thisSelfRef.clearSelection();
       }
     },
     tableRowClassName({ row, rowIndex }) {
@@ -668,11 +683,11 @@ export default {
         if (this.mytable) {
           this.$nextTick(() => {
             this.data.Data.forEach((row) => {
-              this.$refs.multipleTable.toggleRowSelection(row, true);
+              this.thisSelfRef.toggleRowSelection(row, true);
             });
           });
         } else {
-          this.$refs.multipleTable.clearSelection();
+          this.thisSelfRef.clearSelection();
         }
       }
       this.$emit('changeIndex', this.pagesize, this.currentPage);
@@ -687,11 +702,11 @@ export default {
         if (this.mytable) {
           this.$nextTick(() => {
             this.data.Data.forEach((row) => {
-              this.$refs.multipleTable.toggleRowSelection(row, true);
+              this.thisSelfRef.toggleRowSelection(row, true);
             });
           });
         } else {
-          this.$refs.multipleTable.clearSelection();
+          this.thisSelfRef.clearSelection();
         }
       }
       this.$emit('changeIndex', this.pagesize, this.currentPage);
@@ -771,7 +786,9 @@ export default {
     color: #888 !important;
   }
 }
-
+/deep/ .el-table-column--selection{
+  text-align: center;
+}
 /deep/ .el-table__header-wrapper {
   border-width: 1px 1px 0 1px;
   border-style: solid;
@@ -815,20 +832,23 @@ export default {
 }
 .flyBtn {
   float: right;
-  position: relative;
-  right: 40px;
-  top: -45px;
-  margin-left: -32px;
+  margin-right: 10px;
+  // position: relative;
+  // right: 40px;
+  // top: -45px;
+  // margin-left: -32px;
 }
 .flyBtnb {
   float: right;
-  position: relative;
-  right: 0px;
-  top: -45px;
-  margin-left: -32px;
+  margin-right: 10px;
+  // position: relative;
+  // right: 0px;
+  // top: -45px;
+  // margin-left: -32px;
 }
 .toolsBar {
-  width: 100%;
+  margin:0 5px 5px;
+  // width: 100%;
   // margin-top: 48px;
   // border-bottom: 1px solid #9A9A9A;
   // margin-bottom: 10px
