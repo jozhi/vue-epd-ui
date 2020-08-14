@@ -387,9 +387,6 @@ export default {
     tableData() {
       return this.$parent.$parent.data.Data || []
     },
-    titleFilter() {
-      return this.$parent.$parent.titleFilter || []
-    },
     pathName() {
       return this.$parent.$parent.pathName
     },

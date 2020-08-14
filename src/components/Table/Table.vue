@@ -41,16 +41,6 @@
       </el-popover>-->
     </div>
 
-    <!-- TODO 预删除 -->
-    <el-popover v-if="titleFilter.length > 0" placement="top-start" title="当前列" width="300" trigger="click">
-      <el-checkbox-group v-model="list">
-        <el-checkbox v-for="(item, index) in titleFilter" :key="index" :label="item" :title="item">{{ item }}</el-checkbox>
-      </el-checkbox-group>
-      <div class="ep-title-filter" slot="reference">
-        <el-button type="text" size="mini" icon="iconfont ep-icon-filter"></el-button>
-      </div>
-    </el-popover>
-
     <!-- 单个table（不分类显示） -->
     <div v-if="!isGroupTable">
       <el-table
@@ -260,15 +250,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    // 总计与否
-    showsummary: {
-      type: Boolean,
-      default: false,
-    },
-    allsummary: {
-      type: String,
-      default: '0',
-    },
     rowKey: {
       type: String,
       default: '',
@@ -291,10 +272,6 @@ export default {
       default: function () {
         return 'doQuery';
       },
-    },
-    titleFilter: {
-      type: Array,
-      default: () => [],
     },
     pathName: {
       type: String,
@@ -419,7 +396,6 @@ export default {
       pagesize: Number(this.pager),
       currentPage: Number(this.pageNum),
       tableData: [],
-      list: [],
       flyTitle: false,
       noShowArr: [], // 分类显示的收起隐藏中的隐藏内容
       toolsFlag: false, // 控制是否展示按钮工具
@@ -462,8 +438,6 @@ export default {
       });
     }
 
-    this.list = this.titleFilter;
-    // this.$store.dispatch('SET_CLICK', this.rowDbClick);
   },
   methods: {
     // 判定是否需要表头浮动
