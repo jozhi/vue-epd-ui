@@ -152,13 +152,6 @@
       <div class="secition tableIntro">
         <h3 class="moreInfo">Table Attributes</h3>
         <div class="cont">
-             <!-- :data="tableData"
-            :summaryTitles="['number']"
-            :titleControl="true"
-            :exportParm="{'name':''}"
-            :selfRef="'toggleColumn'"
-            maxheight="200"
-            style="overflow-y:auto;" -->
           <table class="intro">
             <thead>
               <tr> <th>参数</th> <th>说明</th> <th>数据类型</th> <th>可选值</th> <th>默认值</th> </tr>
@@ -169,6 +162,7 @@
               <tr> <td>summaryTitles</td> <td>需要合计的属性数组</td> <td> Array</td> <td>数据对象中需要累加的值</td> <td>-</td> </tr>
               <tr> <td>selfRef</td> <td>单独定义 table 的 ref 和 Id</td> <td> String</td> <td>合法的字符串</td> <td>ref:multipleTable && id:titleControl</td> </tr>
               <tr> <td>exportParm</td> <td>导出功能相关查询参数</td> <td> Object</td> <td>视业务而定</td> <td>-</td> </tr>
+              <tr> <td>onlyData</td> <td>是否为一次性加载所有数据</td> <td> Boolean</td> <td>true/false</td> <td> false</td> </tr>
             </tbody>
           </table>
         </div>

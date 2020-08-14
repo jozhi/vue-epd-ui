@@ -351,21 +351,21 @@ export default {
       : (this.selectoptions = this.SelfDictionaries) // 查询对应加载项 selectoptions 或者加载传入项
   },
   computed: {
-    selIndex() {
-      return this.$store.getters.selIndex
-    },
+    // selIndex() {
+    //   return this.$store.getters.selIndex
+    // },
     row() {
       return this.$store.getters.row
     },
-    rowDbClick() {
-      return this.$store.getters.dbClick
-    },
+    // rowDbClick() {
+    //   return this.$store.getters.dbClick
+    // },
     rowIndex() {
       return this.$store.getters.rowIndex
     },
-    column() {
-      return this.$store.getters.column
-    },
+    // column() {
+    //   return this.$store.getters.column
+    // },
     codeTypes: {
       get: function() {
         let codeTypes =
@@ -381,15 +381,15 @@ export default {
         return newVal
       }
     },
-    isCodeType() {
-      return this.$parent.$parent.isCodeType
-    },
-    tableData() {
-      return this.$parent.$parent.data.Data || []
-    },
-    pathName() {
-      return this.$parent.$parent.pathName
-    },
+    // isCodeType() {
+    //   return this.$parent.$parent.isCodeType
+    // },
+    // tableData() {
+    //   return this.$parent.$parent.data.Data || []
+    // },
+    // pathName() {
+    //   return this.$parent.$parent.pathName
+    // },
     // 这里获得到父组件的变量，用于判断当前列是否要显示
     titleControl() {
       const self = this
@@ -509,9 +509,9 @@ export default {
         }
       }
     },
-    changeform() {
-      // console.log(val,name);
-    },
+    // changeform() {
+    //   console.log(val,name);
+    // },
     getEditor(data, scope) {
       this.$emit('tableClick', data, scope)
     },
