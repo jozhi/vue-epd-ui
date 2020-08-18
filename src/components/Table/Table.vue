@@ -1,36 +1,25 @@
 <template>
   <div class="ep-table">
     <div class="toolsBar cf" v-if="titleControl || (JSON.stringify(exportParm) != '{}')">
-      <el-popover style="float:right;" v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
+      <el-popover class="flyBtn" v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
         <div v-for="(item, i) in tableTitle" :key="i">
           <el-checkbox v-model="item.checked">{{ item.title }}</el-checkbox>
         </div>
         <!-- <el-button slot="reference">显示列</el-button> -->
-        <img
-          src="./img/icon_shuaixuan_nor.png"
-          alt="筛选"
-          :class="{flyBtn: titleControl && (JSON.stringify(exportParm) != '{}'),
-          flyBtnb: titleControl && !(JSON.stringify(exportParm) != '{}')}"
-          style="cursor:pointer;"
-          slot="reference"
-          id="SXIcon"
-        />
+        <img src="./img/icon_shuaixuan_nor.png" alt="筛选" title="筛选" id="SXIcon" slot="reference" >
       </el-popover>
-      <img
-        src="./img/icon_daochu_nor.png"
-        alt="导出"
-        :class="{flyBtnb: (JSON.stringify(exportParm) != '{}')}"
-        title="导出"
+      
+      <img src="./img/icon_daochu_nor.png" alt="导出" title="导出" 
+        class="flyBtn"
         @click="allExcel"
-        style="cursor:pointer;"
         v-if="(JSON.stringify(exportParm) != '{}') && toolsFlag"
-      />
+      >
       <!-- <el-popover
         v-if="JSON.stringify(exportParm) != '{}'"
         placement="bottom"
         trigger="hover"
         visible-arrow="true"
-      >
+        >
         <div>
           <el-button @click="curExcel">导出当前页</el-button>
         </div>
@@ -254,10 +243,6 @@ export default {
       type: String,
       default: '',
     },
-    rowDbClick: {
-      type: Boolean,
-      default: false,
-    },
     pager: {
       type: [String, Number],
       // default: 10
@@ -267,20 +252,20 @@ export default {
       default: 1,
     },
     name: String,
-    api: {
-      type: String,
-      default: function () {
-        return 'doQuery';
-      },
-    },
-    pathName: {
-      type: String,
-      default: 'tableData',
-    },
-    isCodeType: {
-      type: Boolean,
-      default: false,
-    },
+    // api: {
+    //   type: String,
+    //   default: function () {
+    //     return 'doQuery';
+    //   },
+    // },
+    // pathName: {
+    //   type: String,
+    //   default: 'tableData',
+    // },
+    // isCodeType: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     ismerge: {
       type: Boolean,
       default: false,
@@ -676,7 +661,6 @@ export default {
     },
     cellDbClick() {
       // console.log(row, column);
-      if (!this.rowDbClick) return;
       // this.index = this.index + 1;
       // this.$store.dispatch('SET_COLUMN', column.property);
       // let index = this.data.Data.indexOf(row);
@@ -815,6 +799,9 @@ export default {
   // margin-top: 48px;
   // border-bottom: 1px solid #9A9A9A;
   // margin-bottom: 10px
+  img{
+    cursor: pointer;
+  }
 }
 /deep/ .mainTable {
   border: 0px;
