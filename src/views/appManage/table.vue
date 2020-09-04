@@ -101,9 +101,6 @@
         <div class="demoCont">
           <div class="elm">
             <epd-table :data="tableData"
-            :summaryTitles="['number']"
-            :titleControl="true"
-            :exportParm="{'name':''}"
             :selfRef="'toggleColumn'"
             @select-checkbox="selectCheckbox"
             :pager="10"
@@ -117,30 +114,8 @@
             </epd-table>
           </div>
           <div class="codeWrap">
-            <pre v-highlightjs><code class="html">  // html部分
-            &lt;epd-table :data=&quot;tableData&quot;
-              :summaryTitles=&quot;[&#x27;number&#x27;]&quot;
-              :titleControl=&quot;true&quot;
-              :exportParm=&quot;{&#x27;name&#x27;:&#x27;&#x27;}&quot;
-              :selfRef=&quot;&#x27;toggleColumn&#x27;&quot;
-              maxheight=&quot;200&quot;
-              style=&quot;overflow-y:auto;&quot;
-            &gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;id&quot; header=&quot;id&quot; width=&quot;50&quot;&gt;&lt;/epd-table-column&gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;name&quot; header=&quot;姓名&quot;&gt;&lt;/epd-table-column&gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;number&quot; header=&quot;月数&quot;&gt;&lt;/epd-table-column&gt;
-            &lt;/epd-table&gt;
-
-            // 数据部分
-            data() {
-              return {
-                tableData: {
-                  Data:[
-                    {"id":"1","number":6,"name":"test"}
-                  ]
-                }
-              };
-            }
+            <pre v-highlightjs><code class="html">
+              
             </code></pre>
           </div>
           <div class="toggle">
@@ -158,13 +133,10 @@
         <div class="demoCont">
           <div class="elm">
             <epd-table :data="tableData"
-            :summaryTitles="['number']"
-            :titleControl="true"
-            :exportParm="{'name':''}"
             :selfRef="'toggleColumn'"
             @select-checkbox="selectCheckbox"
             :pager="10"
-            :onlyData="true"
+            :pageNum="1"
             style="overflow-y:auto;"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
@@ -174,30 +146,8 @@
             </epd-table>
           </div>
           <div class="codeWrap">
-            <pre v-highlightjs><code class="html">  // html部分
-            &lt;epd-table :data=&quot;tableData&quot;
-              :summaryTitles=&quot;[&#x27;number&#x27;]&quot;
-              :titleControl=&quot;true&quot;
-              :exportParm=&quot;{&#x27;name&#x27;:&#x27;&#x27;}&quot;
-              :selfRef=&quot;&#x27;toggleColumn&#x27;&quot;
-              maxheight=&quot;200&quot;
-              style=&quot;overflow-y:auto;&quot;
-            &gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;id&quot; header=&quot;id&quot; width=&quot;50&quot;&gt;&lt;/epd-table-column&gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;name&quot; header=&quot;姓名&quot;&gt;&lt;/epd-table-column&gt;
-              &lt;epd-table-column editor=&quot;text&quot; name=&quot;number&quot; header=&quot;月数&quot;&gt;&lt;/epd-table-column&gt;
-            &lt;/epd-table&gt;
-
-            // 数据部分
-            data() {
-              return {
-                tableData: {
-                  Data:[
-                    {"id":"1","number":6,"name":"test"}
-                  ]
-                }
-              };
-            }
+            <pre v-highlightjs><code class="html">
+              
             </code></pre>
           </div>
           <div class="toggle">
@@ -206,6 +156,38 @@
           <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
         </div>
       </div>
+
+
+      <!-- Table 列显示隐藏 打印 -->
+      <div class="secition">
+        <h3 class="demoTitle">Table 列显示隐藏 打印</h3>
+        <div class="demoCont">
+          <div class="elm">
+            <epd-table :data="tableData"
+            :selfRef="'toggleColumn'"
+            @select-checkbox="selectCheckbox"
+            :pager="10"
+            :pageNum="1"
+            style="overflow-y:auto;"
+            >
+              <el-table-column type="selection" width="55"> </el-table-column>
+              <epd-table-column editor="text" name="id" header="id" width="50"></epd-table-column>
+              <epd-table-column editor="text" name="name" header="姓名"></epd-table-column>
+              <epd-table-column editor="text" name="number" header="月数"></epd-table-column>
+            </epd-table>
+          </div>
+          <div class="codeWrap">
+            <pre v-highlightjs><code class="html">
+              
+            </code></pre>
+          </div>
+          <div class="toggle">
+            <a href="javascript:;" class="toggleHand">显示隐藏代码</a>
+          </div>
+          <a href="javascript:;" class="toggleCode">显示隐藏代码</a>
+        </div>
+      </div>
+
 
       <!-- 组件参数介绍 -->
       <div class="secition tableIntro">
@@ -220,7 +202,8 @@
               <tr> <td>titleControl</td> <td>开启列显示隐藏功能</td> <td> Boolean</td> <td>true/false</td> <td>false</td> </tr>
               <tr> <td>summaryTitles</td> <td>需要合计的属性数组</td> <td> Array</td> <td>数据对象中需要累加的值</td> <td>-</td> </tr>
               <tr> <td>selfRef</td> <td>单独定义 table 的 ref 和 Id</td> <td> String</td> <td>合法的字符串</td> <td>ref:'multipleTable' && id:'titleControl'</td> </tr>
-              <tr> <td>exportParm</td> <td>导出功能相关查询参数</td> <td> Object</td> <td>视业务而定</td> <td>-</td> </tr>
+              <tr> <td>exportQueryParams</td> <td>导出功能相关查询参数</td> <td> Object</td> <td>视业务而定</td> <td>{}</td> </tr>
+              <tr> <td>exportIcon</td> <td>是否启用导出功能（控制导出按钮显示隐藏）</td> <td> Boolean</td> <td> true/false</td> <td>false</td> </tr>
               <tr> <td>onlyData</td> <td>是否为一次性加载所有数据</td> <td> Boolean</td> <td>true/false</td> <td> false</td> </tr>
               
               <tr> <td>isGroupTable</td> <td>是否分组显示</td> <td> Boolean</td> <td>true/false</td> <td> false</td> </tr>

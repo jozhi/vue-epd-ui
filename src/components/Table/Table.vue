@@ -1,21 +1,25 @@
 <template>
   <div class="ep-table">
-    <div class="toolsBar cf" v-if="titleControl || (JSON.stringify(exportParm) != '{}')">
+    <div class="toolsBar cf" v-if="titleControl || (JSON.stringify(exportQueryParams) != '{}')">
+      
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAA0VXHyAAABhElEQVQ4EWNgIBJ0L94zdf/+/SzoypnQBXDx//1jyDr9+O/2aUsPCyKrIdoAkKb//xlcPv/9eaJ34WE1mCGMMAY63bfqmNCfn99iGf4xJDAwMEr8Z/gvAVfDyPie6T9TWGm84x6sBnQv3pv4/9//nv8MDEJwTegMRsY/DP8Z85mRxf///8/ErWw3D0jXA8U5keUw2IyM/4Au24FiALeS3SygU5MwFKMLQLwQUBbvtBIeiD1L9oQANaeA1AL99YyBgSmbk5lZ1kyOmbUszhlhESPDLZb/bBYg/0PVMjCsWvWf+f6PvbcY/jMoMTIyHmbh4AwoCrN6h2xx58I9/xkZGfbwMLOHZUXbvofJgRPGw1/7/MCaGRgec/3nCcwJM0fRDFLMxMQwzUSGOd/R0fYPTDOIBhsADPEAIPsfIwNLeE68+VtkBTB2aaxLNoyNTEOS5n9GM6DzNpXGORxHliSGDTGAkUGemZEhmRgNVFfD2Llw70FgKrcjx2RGBsa98HRAjgEgPQCWo3Og8uAYwwAAAABJRU5ErkJggg=="
+        alt="导出" title="导出"
+        class="flyBtn"
+        @click="allExcel"
+        v-if="exportIcon && toolsFlag"
+      >
+      
       <el-popover class="flyBtn" v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
         <div v-for="(item, i) in tableTitle" :key="i">
           <el-checkbox v-model="item.checked">{{ item.title }}</el-checkbox>
         </div>
         <!-- <el-button slot="reference">显示列</el-button> -->
-        <img src="./img/icon_shuaixuan_nor.png" alt="筛选" title="筛选" id="SXIcon" slot="reference" >
+        <img alt="筛选" title="筛选" id="SXIcon" slot="reference" 
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAYAAADtc08vAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAADwAAAADW5XGhAAAAmElEQVQoFWPsWrRnyf//DNEM5ABGxtlMZGsGWfj/fyoTAwNjIzmWQ/QwNjKCGJ0L9zYAjauHCBJLMjaWxzs3gA0AaSHNEIhmkD64AcQbgtCMYQBhQ1A1YzUAtyGYmnEaADFkz38QDQPl8S4o3oWJA6ORMjAyDGB8zcjIGIYrpLCGwf79+1kYGBkvAjWu5uRk1S6Lc16NywAA/iQ0ZXEQcRAAAAAASUVORK5CYII="
+        >
       </el-popover>
-      
-      <img src="./img/icon_daochu_nor.png" alt="导出" title="导出" 
-        class="flyBtn"
-        @click="allExcel"
-        v-if="(JSON.stringify(exportParm) != '{}') && toolsFlag"
-      >
       <!-- <el-popover
-        v-if="JSON.stringify(exportParm) != '{}'"
+        v-if="JSON.stringify(exportQueryParams) != '{}'"
         placement="bottom"
         trigger="hover"
         visible-arrow="true"
@@ -270,8 +274,13 @@ export default {
       type: Boolean,
       default: false,
     },
-    // 导出excel
-    exportParm: {
+    // 导出excel功能 icon 是否显示
+    exportIcon: {
+      type: Boolean,
+      default: false,
+    },
+    // 导出excel查询参数
+    exportQueryParams: {
       type: Object,
       default: function () {
         return {};
@@ -310,7 +319,7 @@ export default {
             this.toolsFlag = true;
           }
         }
-        console.log('watch data newValue:',newValue);
+        // console.log('watch data newValue:',newValue);
       },
       deep: true,
     },
@@ -418,7 +427,7 @@ export default {
     }
     if (this.isGroupTable && this.tableData.length !== 0) {
       this.$nextTick(() => {
-        console.log(this.$refs);
+        // console.log(this.$refs);
         this.addScrollEventLister();
       });
     }
@@ -495,12 +504,12 @@ export default {
     // 隐藏当前分表
     hidThisTable(i) {
       this.noShowArr.push(i);
-      console.log(this.noShowArr);
+      // console.log(this.noShowArr);
     },
     // 展开当前分表
     showThisTable(i) {
       this.noShowArr.splice(this.noShowArr.indexOf(i), 1);
-      console.log(this.noShowArr);
+      // console.log(this.noShowArr);
     },
 
     // 求和计算
@@ -674,29 +683,31 @@ export default {
       // this.$store.dispatch('SET_ROWINDEX', index);
       this.$emit('rowdblclick', row, index);
     },
-    sortchange(column) {
-      console.log(column, this.tableData);
+    /*
+     *  当表格的排序条件发生变化的时候会触发该事件
+     *  @params {column}
+     */
+    sortchange() {
+      // console.log(column, this.tableData);
     },
     // 导出当前页03excel
-    curExcel() {
-      var parm = '';
-      const self = this;
-      for (let key in self.exportParm) {
-        parm += key + '=' + self.exportParm[key] + '&';
-      }
-      console.log(parm.slice(0, -1));
-    },
+    // curExcel() {
+    //   // var parm = '';
+    //   // const self = this;
+    //   // for (let key in self.exportQueryParams) {
+    //   //   parm += key + '=' + self.exportQueryParams[key] + '&';
+    //   // }
+    //   // console.log(parm.slice(0, -1));
+    // },
     // todo 导出接口未完成
     allExcel() {
-      var parm = '';
+      let parm = '';
       const self = this;
-      for (let key in self.exportParm) {
-        if (key === 'pageSize' || key === 'page') {
-          continue;
-        }
-        parm += key + '=' + self.exportParm[key] + '&';
+      for (let key in self.exportQueryParams) {
+        if (key === 'pageSize' || key === 'page') { continue; }
+        parm += key + '=' + self.exportQueryParams[key] + '&';
       }
-      console.log(parm.slice(0, -1));
+      parm = parm.substr(0, parm.length - 1);
       window.open(`/api/employment/query/personMultiple/export?${parm}`);
     },
   },
@@ -779,22 +790,25 @@ export default {
 }
 .flyBtn {
   float: right;
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 0;
   // position: relative;
   // right: 40px;
   // top: -45px;
   // margin-left: -32px;
 }
-.flyBtnb {
-  float: right;
-  margin-right: 10px;
-  // position: relative;
-  // right: 0px;
-  // top: -45px;
-  // margin-left: -32px;
-}
+// .flyBtnb {
+//   float: right;
+//   margin-right: 10px;
+//   // position: relative;
+//   // right: 0px;
+//   // top: -45px;
+//   // margin-left: -32px;
+// }
 .toolsBar {
   margin:0 5px 5px;
+  height: 30px;
   // width: 100%;
   // margin-top: 48px;
   // border-bottom: 1px solid #9A9A9A;
