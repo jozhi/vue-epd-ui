@@ -100,7 +100,9 @@
         <h3 class="demoTitle">一次性加载所有数据</h3>
         <div class="demoCont">
           <div class="elm">
-            <epd-table :data="tableData"
+            <epd-table
+            maxheight="200" 
+            :data="tableData"
             :selfRef="'toggleColumn'"
             @select-checkbox="selectCheckbox"
             :pager="10"
@@ -132,7 +134,9 @@
         <h3 class="demoTitle">Table 事件 分页</h3>
         <div class="demoCont">
           <div class="elm">
-            <epd-table :data="tableData"
+            <epd-table
+            maxheight="200" 
+            :data="tableData"
             :selfRef="'toggleColumn'"
             @select-checkbox="selectCheckbox"
             :pager="10"
@@ -163,12 +167,19 @@
         <h3 class="demoTitle">Table 列显示隐藏 打印</h3>
         <div class="demoCont">
           <div class="elm">
-            <epd-table :data="tableData"
+            <epd-table
+            maxheight="200" 
+            :data="tableData"
             :selfRef="'toggleColumn'"
             @select-checkbox="selectCheckbox"
             :pager="10"
             :pageNum="1"
             style="overflow-y:auto;"
+            :titleControl='true'
+            :exportQueryParams="formData"
+            :exportIcon="true"
+            @exportListen="exportListenFn"
+            v-on="$listeners"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
               <epd-table-column editor="text" name="id" header="id" width="50"></epd-table-column>
@@ -231,6 +242,11 @@
                 <td>根据组件值更改实时触发</td>
                 <td>{ name | inputvalue | indexNumber }</td>
               </tr>
+              <tr>
+                <td>exportListen</td>
+                <td>点击导出按钮时，如果有此方法会执行此方法。</td>
+                <td>-</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -253,6 +269,7 @@ export default {
   name: 'AppManage',
   data() {
     return {
+      formData:{},
       input:'',
       tableData: {
         total: 21,
@@ -305,6 +322,9 @@ export default {
     selectCheckbox(o) {
       console.log('selectCheckbox', o);
     },
+    exportListenFn(){
+      console.log('exportListenFn');
+    }
   },
         
 };

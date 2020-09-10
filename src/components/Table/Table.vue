@@ -1,13 +1,23 @@
 <template>
   <div class="ep-table">
     <div class="toolsBar cf" v-if="titleControl || (JSON.stringify(exportQueryParams) != '{}')">
-      
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAA0VXHyAAABhElEQVQ4EWNgIBJ0L94zdf/+/SzoypnQBXDx//1jyDr9+O/2aUsPCyKrIdoAkKb//xlcPv/9eaJ34WE1mCGMMAY63bfqmNCfn99iGf4xJDAwMEr8Z/gvAVfDyPie6T9TWGm84x6sBnQv3pv4/9//nv8MDEJwTegMRsY/DP8Z85mRxf///8/ErWw3D0jXA8U5keUw2IyM/4Au24FiALeS3SygU5MwFKMLQLwQUBbvtBIeiD1L9oQANaeA1AL99YyBgSmbk5lZ1kyOmbUszhlhESPDLZb/bBYg/0PVMjCsWvWf+f6PvbcY/jMoMTIyHmbh4AwoCrN6h2xx58I9/xkZGfbwMLOHZUXbvofJgRPGw1/7/MCaGRgec/3nCcwJM0fRDFLMxMQwzUSGOd/R0fYPTDOIBhsADPEAIPsfIwNLeE68+VtkBTB2aaxLNoyNTEOS5n9GM6DzNpXGORxHliSGDTGAkUGemZEhmRgNVFfD2Llw70FgKrcjx2RGBsa98HRAjgEgPQCWo3Og8uAYwwAAAABJRU5ErkJggg=="
-        alt="导出" title="导出"
-        class="flyBtn"
-        @click="allExcel"
-        v-if="exportIcon && toolsFlag"
-      >
+      <el-tooltip class="tooltip" effect="dark" content="导出全部数据" placement="top">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAA0VXHyAAABhElEQVQ4EWNgIBJ0L94zdf/+/SzoypnQBXDx//1jyDr9+O/2aUsPCyKrIdoAkKb//xlcPv/9eaJ34WE1mCGMMAY63bfqmNCfn99iGf4xJDAwMEr8Z/gvAVfDyPie6T9TWGm84x6sBnQv3pv4/9//nv8MDEJwTegMRsY/DP8Z85mRxf///8/ErWw3D0jXA8U5keUw2IyM/4Au24FiALeS3SygU5MwFKMLQLwQUBbvtBIeiD1L9oQANaeA1AL99YyBgSmbk5lZ1kyOmbUszhlhESPDLZb/bBYg/0PVMjCsWvWf+f6PvbcY/jMoMTIyHmbh4AwoCrN6h2xx58I9/xkZGfbwMLOHZUXbvofJgRPGw1/7/MCaGRgec/3nCcwJM0fRDFLMxMQwzUSGOd/R0fYPTDOIBhsADPEAIPsfIwNLeE68+VtkBTB2aaxLNoyNTEOS5n9GM6DzNpXGORxHliSGDTGAkUGemZEhmRgNVFfD2Llw70FgKrcjx2RGBsa98HRAjgEgPQCWo3Og8uAYwwAAAABJRU5ErkJggg=="
+          alt="导出全部数据" title="导出全部数据"
+          class="flyBtn"
+          @click="allPageExcel"
+          v-if="exportIcon && toolsFlag"
+        >
+      </el-tooltip>
+
+      <el-tooltip class="tooltip" effect="dark" content="导出全部数据" placement="top">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAA0VXHyAAABhElEQVQ4EWNgIBJ0L94zdf/+/SzoypnQBXDx//1jyDr9+O/2aUsPCyKrIdoAkKb//xlcPv/9eaJ34WE1mCGMMAY63bfqmNCfn99iGf4xJDAwMEr8Z/gvAVfDyPie6T9TWGm84x6sBnQv3pv4/9//nv8MDEJwTegMRsY/DP8Z85mRxf///8/ErWw3D0jXA8U5keUw2IyM/4Au24FiALeS3SygU5MwFKMLQLwQUBbvtBIeiD1L9oQANaeA1AL99YyBgSmbk5lZ1kyOmbUszhlhESPDLZb/bBYg/0PVMjCsWvWf+f6PvbcY/jMoMTIyHmbh4AwoCrN6h2xx58I9/xkZGfbwMLOHZUXbvofJgRPGw1/7/MCaGRgec/3nCcwJM0fRDFLMxMQwzUSGOd/R0fYPTDOIBhsADPEAIPsfIwNLeE68+VtkBTB2aaxLNoyNTEOS5n9GM6DzNpXGORxHliSGDTGAkUGemZEhmRgNVFfD2Llw70FgKrcjx2RGBsa98HRAjgEgPQCWo3Og8uAYwwAAAABJRU5ErkJggg=="
+          alt="导出当前页数据" title="导出当前页数据"
+          class="flyBtn"
+          @click="singlePageExcel"
+          v-if="exportIcon && toolsFlag"
+        >
+      </el-tooltip>
       
       <el-popover class="flyBtn" v-if="titleControl && toolsFlag" placement="bottom" trigger="hover" visible-arrow="true">
         <div v-for="(item, i) in tableTitle" :key="i">
@@ -408,6 +418,8 @@ export default {
 
   },
   mounted() {
+
+    console.log('this.$linsteners::',this.$listeners);
     // console.log('this.selfRef:::',this.selfRef);
     // console.log('this.summaryTitles:::',this.summaryTitles);
     // 当前 table 的 ref 对象
@@ -700,12 +712,31 @@ export default {
     //   // console.log(parm.slice(0, -1));
     // },
     // todo 导出接口未完成
-    allExcel() {
+    singlePageExcel(){
+      for(let key in this.$listeners){
+        if(key === 'exportListen'){
+          console.log('this.$listeners[key]',key);
+        }
+        this.$emit('exportListen','single');
+        return false
+      }
+    },
+    allPageExcel() {
+      
+      for(let key in this.$listeners){
+        if(key === 'exportListen'){
+          console.log('this.$listeners[key]',key);
+        }
+        this.$emit('exportListen','all');
+        return false
+      }
+      
+      
       let parm = '';
-      const self = this;
-      for (let key in self.exportQueryParams) {
+      const queryParams = this.exportQueryParams;
+      for (let key in queryParams) {
         if (key === 'pageSize' || key === 'page') { continue; }
-        parm += key + '=' + self.exportQueryParams[key] + '&';
+        parm += key + '=' + queryParams[key] + '&';
       }
       parm = parm.substr(0, parm.length - 1);
       window.open(`/api/employment/query/personMultiple/export?${parm}`);
@@ -718,6 +749,9 @@ export default {
 .none {
   display: none !important;
 }
+// /deep/.el-popover{
+//   padding: 10px;
+// }
 .ep-table {
   position: relative;
   overflow: hidden;
