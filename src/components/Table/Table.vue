@@ -419,7 +419,7 @@ export default {
   },
   mounted() {
 
-    console.log('this.$linsteners::',this.$listeners);
+    // console.log('this.$linsteners::',this.$listeners);
     // console.log('this.selfRef:::',this.selfRef);
     // console.log('this.summaryTitles:::',this.summaryTitles);
     // 当前 table 的 ref 对象
@@ -722,7 +722,6 @@ export default {
       }
     },
     allPageExcel() {
-      
       for(let key in this.$listeners){
         if(key === 'exportListen'){
           console.log('this.$listeners[key]',key);
