@@ -219,6 +219,8 @@
               
               <tr> <td>isGroupTable</td> <td>是否分组显示</td> <td> Boolean</td> <td>true/false</td> <td> false</td> </tr>
               <tr> <td>group</td> <td>分组依据</td> <td> String</td> <td>-</td> <td>'group'</td></tr>
+
+              <tr> <td>loading</td> <td>显示 loading效果</td> <td> Boolean</td> <td>true/false</td> <td> false</td> </tr>
             </tbody>
           </table>
         </div>

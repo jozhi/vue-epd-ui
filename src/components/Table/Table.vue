@@ -47,6 +47,7 @@
     <!-- 单个table（不分类显示） -->
     <div v-if="!isGroupTable">
       <el-table
+        v-loading="loading"
         :ref="selfRef || 'multipleTable'"
         :show-summary="summaryTitles.length != 0"
         :summary-method="getSummaries"
@@ -78,6 +79,7 @@
     <div v-if="isGroupTable && tableData.length !== 0" style="margin-bottom:10px" class="mainGroup">
       <div style="margin-bottom: 10px" :class="{flyTitle: flyTitle}" id="flyTitle">
         <el-table
+          v-loading="loading"
           :span-method="objectSpanMethod"
           :ref="selfRef || 'multipleTable'"
           class="mainTable"
@@ -130,6 +132,7 @@
           <div style="margin-bottom:10px;font-size:16px;color:#409EFF;font-weight:bold">{{ `${key}` }}</div>
         </div>
         <el-table
+          v-loading="loading"
           v-show="!noShowArr.includes(i)"
           :show-summary="summaryTitles.length != 0"
           :summary-method="getSummaries"
@@ -161,6 +164,7 @@
     <!-- 多个table但没有数据时以单个table表格显示暂无数据 -->
     <div v-if="isGroupTable && tableData.length === 0" style="text-align:center;color:#909399">
       <el-table
+        v-loading="loading"
         :ref="selfRef || 'multipleTable'"
         :show-summary="summaryTitles.length != 0"
         :summary-method="getSummaries"
@@ -206,6 +210,11 @@
 <script type="es6">
 export default {
   props: {
+    // 控制表格显示隐藏 loading
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     // 负责声明哪些字段需要统计
     summaryTitles: {
       type: Array,
