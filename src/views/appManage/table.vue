@@ -182,9 +182,9 @@
             v-on="$listeners"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
-              <epd-table-column editor="text" name="id" header="id" width="50"></epd-table-column>
-              <epd-table-column editor="text" name="name" header="姓名"></epd-table-column>
-              <epd-table-column editor="text" name="number" header="月数"></epd-table-column>
+              <epd-table-column editor="text" label-class-name="{name:'id',value:'id'}" name="id" header="id" width="50"></epd-table-column>
+              <epd-table-column editor="text" label-class-name="{name:'name',value:'姓名'}" name="name" header="姓名"></epd-table-column>
+              <epd-table-column editor="text" label-class-name="{name:'number',value:'月数'}" name="number" header="月数"></epd-table-column>
             </epd-table>
           </div>
           <div class="codeWrap">

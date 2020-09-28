@@ -8,6 +8,7 @@
     align="center"
     :width="width"
     v-if="titleControl"
+    :label-class-name="labelClassName"
   >
     <template slot-scope="scope">
       <span v-if="editor === 'index'">{{ scope.$index + 1 }}</span>
@@ -189,6 +190,10 @@
 import dict from './dict/dict.js'
 export default {
   props: {
+    labelClassName:{
+      type: String,
+      default: ''
+    },
     addtext: {
       type: Boolean,
       default: false
