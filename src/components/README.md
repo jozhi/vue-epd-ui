@@ -9,7 +9,7 @@ $ npm run release
 
 
 // epdUI 引入
-import epdUI from 'epdUI'
+import epdUI from 'epd-ui'
 Vue.use(epdUI)
 
 ```
