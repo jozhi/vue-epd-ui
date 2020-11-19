@@ -15,6 +15,8 @@ const components = {
 }
 
 var VuePlugin = {}
+
+ // 按照规则注册组件，最终是在main.js中通过use入
 VuePlugin.install = function(Vue) {
     for (let cptItem in components) {
         Vue.component('epd'+cptItem, components[cptItem]);
