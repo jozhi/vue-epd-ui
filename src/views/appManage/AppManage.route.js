@@ -2,6 +2,7 @@ const button = () => import('./button')
 const input = () => import('./input')
 const select = () => import('./select')
 const table = () => import('./table')
+const editor = () => import('./editor-show')
 
 
 export default [
@@ -28,6 +29,12 @@ export default [
     name: 'table',
     meta: {title: 'table'},
     component: table
+  },
+  {
+    path: '/editor',
+    name: 'editor',
+    meta: {title: 'editor'},
+    component: editor
   },
 ]
 

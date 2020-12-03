@@ -4,6 +4,7 @@ import Select from './Select/Select.vue'
 import Modal from './Modal/Modal.vue'
 import Table from './Table/Table.vue'
 import TableColumn from './Table/TableColumn.vue'
+import Editor from './Editor/Editor.vue'
 
 const components = {
     Button,
@@ -12,6 +13,7 @@ const components = {
     Modal,
     Table,
     TableColumn,
+    Editor
 }
 
 var VuePlugin = {}

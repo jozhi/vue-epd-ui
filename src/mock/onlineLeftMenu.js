@@ -27,6 +27,10 @@ module.exports = [
         'title': 'table组件',
         'location': '/table'
       },
+      {
+        'title': 'editor组件',
+        'location': '/editor'
+      },
     ]
   },
   // {
